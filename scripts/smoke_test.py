@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copyright (c) 2013-2015, Rethink Robotics
 # All rights reserved.
@@ -138,9 +138,9 @@ def main():
         return 1
 
     try:
-        raw_input("Press <Enter> to Begin Smoke Test\n")
-    except Exception:
-        print("\nExiting.")
+        input("Press <Enter> to Begin Smoke Test\n")
+    except Exception as e:
+        print(f"\nExiting : {e}")
         return 1
 
     serial = rospy.get_param("manifest/robot_serial")
@@ -150,7 +150,7 @@ def main():
                  cur_time.tm_year, test_dict['version'],)
                 )
     if args.test == None:
-        print 'Performing All Tests'
+        print('Performing All Tests')
         ros_init()
         for t in test_dict['valid_tests'][test_dict['version']]:
             run_test(t, filename, args.proceed)
